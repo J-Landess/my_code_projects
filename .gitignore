@@ -2,4 +2,5 @@
 .env
 *.pyc
 __pycache__/
-.ipynb_checkpoints/
+.ipynb_checkpoints/.ipynb_checkpoints
+my_venv_env/
