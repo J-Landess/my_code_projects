@@ -1,7 +1,7 @@
+from termcolor import colored
 
-
-player_1 = "X"
-player_2 = "O"
+player_1 = colored("X","green")
+player_2 = colored("O","red")
 
 board = [
     [" ", " ", " "],
@@ -76,10 +76,4 @@ def run_game():
 
 
 run_game()
-
-
-
-
-
-
 
