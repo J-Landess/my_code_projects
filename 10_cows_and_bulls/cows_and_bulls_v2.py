@@ -16,8 +16,12 @@ def get_answer():
 
 def get_user_guess():
     users_guess = [int(i) for i in input("Guess a four digit number: ")]
-    return users_guess
-
+    if len(users_guess) == 4:
+        return users_guess 
+    else:
+        print("please enter only four digits!!!!")
+        get_user_guess()
+    
 def compute(CORRECT_GUESS,users_guess):
     cows = 0
     bulls = 0
