@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from data_loader import get_data_loaders
+from dataloader import get_data_loaders
 from model import LeNet
 
 # Training function
@@ -10,7 +10,7 @@ def train_model():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # Get data loaders
-    train_loader, test_loader = get_data_loaders(batch_size=64)
+    train_loader, test_loader = get_data_loaders(batch_size=8)
     
     # Initialize the LeNet model and move it to the device
     model = LeNet().to(device)
@@ -20,7 +20,7 @@ def train_model():
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
     # Training loop
-    epochs = 5
+    epochs = 25
     for epoch in range(epochs):
         model.train()  # Set the model to training mode
         running_loss = 0.0
@@ -70,3 +70,4 @@ def evaluate_model(test_loader, model, device):
 
 if __name__ == "__main__":
     train_model()
+    

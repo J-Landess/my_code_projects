@@ -1,25 +1,14 @@
+# Make sure you are in the ml_env conda env.
+
 import torch
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 
-# Define the transformation: convert to tensor and normalize
+# Make tensor and normalize... Also you can add transforms if you like here later
 transform = transforms.Compose([
     transforms.ToTensor(),
-    transforms.Normalize((0.5,), (0.5,))  # Normalize the images
+    transforms.Normalize((0.5,), (0.5,))  # probably should tune this to some optimal 
 ])
-
-# # Define a function to get the data loaders
-# def get_data_loaders(batch_size=64):
-#     print("Loading data...")
-#     train_data = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
-#     test_data = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
-#     print("Data loaded.")
-    
-#     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
-#     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
-    
-#     return train_loader, test_loader
-
 
 def get_data_loaders(batch_size=64):
     data_dir = './data'  # Ensure the correct path is specified here
@@ -29,5 +18,10 @@ def get_data_loaders(batch_size=64):
     print("Data loaded.")
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
-    
+ 
     return train_loader, test_loader
+
+if __name__ == "__main__":
+    batch_size = 8  # You can adjust the batch size
+    train_loader, test_loader = get_data_loaders(batch_size)
+    print(f"Train loader and test loader ready with batch size {batch_size}.")
