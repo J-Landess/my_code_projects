@@ -4,20 +4,20 @@ import torch.optim as optim
 from dataloader import get_data_loaders
 from model import LeNet
 
-# Training function
+
 def train_model():
     # Check if CUDA is available, otherwise use CPU
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
-    # Get data loaders
+   # you can set the batch size here
     train_loader, test_loader = get_data_loaders(batch_size=8)
     
-    # Initialize the LeNet model and move it to the device
+    
     model = LeNet().to(device)
     
-    # Loss function and optimizer
-    criterion = nn.CrossEntropyLoss()  # CrossEntropyLoss works for multi-class classification
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    # Loss and optimizer
+    criterion = nn.CrossEntropyLoss() 
+    optimizer = optim.Adam(model.parameters(), lr=0.001)# tried learning rate .003
     
     # Training loop
     epochs = 25
@@ -45,7 +45,7 @@ def train_model():
         
         print(f"Epoch [{epoch+1}/{epochs}], Loss: {running_loss/len(train_loader):.4f}")
         
-        # Evaluate the model after every epoch
+        # Evaluate_model() after every epoch
         evaluate_model(test_loader, model, device)
     
     print("Training Finished!")
@@ -55,7 +55,7 @@ def evaluate_model(test_loader, model, device):
     model.eval()  # Set the model to evaluation mode
     correct = 0
     total = 0
-    with torch.no_grad():  # Disable gradient calculation during evaluation
+    with torch.no_grad():  # Disable gradient  during eval
         for images, labels in test_loader:
             # Move images and labels to the device
             images, labels = images.to(device), labels.to(device)
