@@ -26,7 +26,7 @@ def get_user_params():
                 raise ValueError()
         except ValueError:
             print("Please enter a correct input")
-            get_user_params()
+            
         return length, uppercase, lowercase, special
 
 
@@ -50,8 +50,9 @@ def generate(length,uppercase,lowercase,special):
     elif uppercase == "n" and lowercase == "y" and special == "n":
         password = [random.choice(l_letters + numbers) for character in range(length)]
         print(password)
-    else:
-        print("Invalid Decision, please enter [y/n]: ")
-        get_user_params()
+        return password
+       
+
+
 length,uppercase,lowercase,special = get_user_params()
 generate(length,uppercase,lowercase,special)

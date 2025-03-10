@@ -36,7 +36,4 @@ elif uppercase == "n" and lowercase == "y" and special == "n":
     for i in range(length):
         password = [random.choice(l_letters + numbers) for character in range(length)]
     print(password)
-# generate password from user inputs
-# print to screen
-# 
-# 
+
