@@ -15,8 +15,6 @@ def get_user_params():
 
             if length < 1:
                 raise ValueError()
-            # if str(length) not in numbers:
-            #     raise ValueError()
             uppercase = input("include uppercase letters [y/n]?: ").lower()
             if uppercase not in ["y","n"]:
                 raise ValueError()   
@@ -26,10 +24,13 @@ def get_user_params():
             special = input("include special characters [y/n]?: ").lower()
             if special not in ["y","n"]:
                 raise ValueError()
+            return length, uppercase, lowercase, special
         except ValueError:
-            print("Please enter a correct input")
+            print("Please start over and enter a correct input....")
             
-        return length, uppercase, lowercase, special
+        
+            
+        
 
 
 
