@@ -5,7 +5,7 @@ import sys
 def print_game():
     char_set = ["💎", "💰", "🍓","💵","👽"]
     game_output = random.choices(char_set,k=3)
-    print(game_output)
+    print("|".join(game_output))
     return game_output
 
 def insert_bill():
@@ -48,14 +48,19 @@ def payout(game_output, credit, bet):
             print(f"Credit: ${credit}")
             
     if credit <= 0:
-        play_again = input("your funds are gone...Game over. play again [y/n]: ").lower()
-        if play_again == "y":
-            credit = insert_bill()
-            return credit
-        elif play_again == "n":
-            print(f"you won ${credit}\nGoodbye ")
-            sys.exit()
-                
+        while True:
+            try:
+                play_again = input("your funds are gone...Game over. play again [y/n]: ").lower()
+                if play_again == "y":
+                    credit = insert_bill()
+                    return credit
+                elif play_again == "n":
+                    print(f"you won ${credit}\nGoodbye ")
+                    sys.exit()
+                else:
+                    raise ValueError("Please enter [y/n]")
+            except ValueError as e:
+                print(e)
     return credit
 
         

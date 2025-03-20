@@ -158,10 +158,10 @@ def evaluate_model(test_loader, model, device):
     conf_matrix = confusion_matrix(all_labels, all_preds)
     
     # Print the results
-    print(f"Test Accuracy: {accuracy * 100:.2f}%")
-    print(f"Precision: {precision:.2f}")
-    print(f"Recall: {recall:.2f}")
-    print(f"F1-Score: {f1:.2f}")
+    print(f"Test Accuracy: {accuracy * 100:.4f}%")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall: {recall:.4f}")
+    print(f"F1-Score: {f1:.4f}")
     print("\nConfusion Matrix:")
     print(conf_matrix)
     print("\nClassification Report:")

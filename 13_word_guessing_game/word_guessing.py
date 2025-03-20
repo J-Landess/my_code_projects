@@ -3,10 +3,7 @@ import random
 def get_word():
     word_list = ["computer","dog","couch","back","spanish"]
     random_word = random.choice(word_list)
-    
     return random_word
-
-
 
 def get_user_guess():
     while True:
@@ -20,8 +17,11 @@ def get_user_guess():
         except ValueError as e:
             print(e)
 
-
 def run():
+    word = get_word()
+    print(f"{word}")
+    secret = ["_" for _ in word]
+    print(f"_".join(secret))
     guessed_letters = set()
     word = get_word()
     print(f"{word}")
@@ -34,10 +34,13 @@ def run():
             guessed_letters.add(user_guess)
         if user_guess in word:
             print(f"{user_guess} is Correct")
-            
+            for i in range(len(word)):
+                if word[i] == user_guess:
+                    secret[i] = user_guess
+                    print(secret)
             continue
         else:
             print(f"{user_guess} is incorrect")
             attempts -= 1
             print(f"You have {attempts} trys left")
-run()    
+run()
