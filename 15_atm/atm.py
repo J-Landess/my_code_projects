@@ -2,8 +2,8 @@ from termcolor import colored
 import sys
 import json
 import os
-
-
+import password_generator_v3 as gen
+import password_strength_checker_v2 as checker
 
 class Account:
     """This is a class that mimicks an online bank account and saves different users information in a JSON file."""
@@ -15,7 +15,7 @@ class Account:
         self.password = None
     
     def __str__(self,):
-        return f"{colored(f'${self.balance}', 'green', 'on_black',['bold'])}"
+        return f"{colored(f'${self.balance}', 'green', 'on_black',['bold','blink'])}"
 
     def user_creds(self,):
         while True:
@@ -35,9 +35,24 @@ class Account:
                     else:
                         print(f"{colored("Incorrect Password","red",'on_black',['bold','blink'])}")          
             else:
-                self.password = input("Please choose a password: ")
-                user_account = {"Name": self.name, "Balance": self.balance,"Password": self.password}
-                self.filename = f"{self.name}_data.json"
+                try:
+                    user_password_answer = input("Would you like to generate a random password?[y/n]: ")
+                    # user_password_answer.lower() != "y" and user_password_answer.lower() != "n"
+                   
+                    if user_password_answer.lower() == "y":
+                        length, uppercase, lowercase, special = gen.get_user_params()
+                        self.password = gen.generate(length, uppercase, lowercase, special)
+                        user_account = {"Name": self.name, "Balance": self.balance,"Password": self.password}
+                    elif user_password_answer.lower() == "n":
+                        self.password = input("Please choose a password: ")
+                        password_score = checker.compute_score(self.password)
+                        print(f"Your password strength is:{password_score}/5")
+                        user_account = {"Name": self.name, "Balance": self.balance,"Password": self.password}
+                        self.filename = f"{self.name}_data.json"
+                    else:
+                        raise ValueError()
+                except ValueError:
+                    print("Must be a y/n")
                 with open(self.filename,"w") as file:
                     json.dump(user_account, file, indent=4)
                     print(f"Account saved to {self.filename}")

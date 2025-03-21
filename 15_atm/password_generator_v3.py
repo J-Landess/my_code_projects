@@ -41,18 +41,18 @@ def generate(length, uppercase, lowercase, special):
         if special == "y":
             character_set += special_characters
             password = [random.choice(character_set) for character in range(length)]
-            print(password)
+            print("".join(password))
             return "".join(password)
         else:
             password = [random.choice(character_set) for character in range(length)]
-            print(password)
+            print("".join(password))
             return "".join(password)
     except TypeError:
         print("Invalid entry")    
-def run():
-    length,uppercase,lowercase,special = get_user_params()
-    password = generate(length,uppercase,lowercase,special)
-    print(f"Password: {password}")
-    return password
+# def run():
+#     length,uppercase,lowercase,special = get_user_params()
+#     password = generate(length,uppercase,lowercase,special)
+#     print(f"Password: {password}")
+#     return password
 
-run()
+# run()
