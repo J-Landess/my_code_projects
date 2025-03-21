@@ -57,18 +57,12 @@ def run_game():
     current_player = player_1  
     while True:
         get_move(current_player, board)
-        
-        
         if check_winner(board):
             print(f"Congratulations, {current_player}! You win!")
             break
-        
-        
         if check_draw(board):
             print("It's a draw! No one wins.")
             break
-        
-     
         if current_player == player_1:
             current_player = player_2
         else:

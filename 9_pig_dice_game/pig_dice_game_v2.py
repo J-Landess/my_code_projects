@@ -10,6 +10,7 @@ def get_name():
     second_player_name = input("\nplayer two what is your name: ")
     players["player_2"][1] = second_player_name
     return players
+    
 def roll():
     return random.randint(1, 6)
 
@@ -68,6 +69,4 @@ def run():
             else:
                 print("Invalid option. Please enter 'y' to roll again or 'n' to switch players.")
         
-        
-
 run()
