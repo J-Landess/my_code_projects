@@ -70,6 +70,7 @@ def run():
         credit, bet = place_bet(credit)
         game_output = print_game()
         credit = payout(game_output, credit, bet)
-    
-run()
+
+run()    
+
 
