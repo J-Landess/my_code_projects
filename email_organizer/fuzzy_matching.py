@@ -2,6 +2,7 @@ import os
 import fitz  # PyMuPDF
 import re
 from datetime import datetime
+from difflib import SequenceMatcher
 
 # === Folders ===
 pdf_folder = input("enter source folder: \nExample:\n\/Users/justinlandess/Desktop/gmail_pdf\nenter source folder: ")
@@ -11,7 +12,7 @@ output_folder = input("Example: /Users/justinlandess/Desktop/organized_emails\nE
 os.makedirs(output_folder, exist_ok=True)
 
 # === Keyword list ===
-keywords = [
+keywords = keywords = [
     "Jonathan","$","bonus","share","share's",
     "contribution", "stock", "payment",
     "differred", "obligation", "vlad",
@@ -30,6 +31,15 @@ month_map = {
     "January": "01", "February": "02", "March": "03", "April": "04", "May": "05", "June": "06",
     "July": "07", "August": "08", "September": "09", "October": "10", "November": "11", "December": "12"
 }
+
+# === Fuzzy match helper ===
+def fuzzy_contains(text, keyword, threshold=0.85):
+    words = text.split()
+    for word in words:
+        ratio = SequenceMatcher(None, word.lower(), keyword.lower()).ratio()
+        if ratio >= threshold:
+            return True
+    return False
 
 # === Enumerate files ===
 for i, filename in enumerate(os.listdir(pdf_folder), 1):
@@ -68,24 +78,24 @@ for i, filename in enumerate(os.listdir(pdf_folder), 1):
             email_date = "UnknownDate"
             print(f"Error parsing date for {filename}: {e}")
 
-        # Check for keyword matches
-        matches = [kw for kw in keywords if kw.lower() in text.lower()]
+        # Check for fuzzy keyword matches
+        matches = [kw for kw in keywords if fuzzy_contains(text, kw)]
 
-        # Sanitize recipient name for folder use
-        safe_recipient = recipient.replace(" ", "_").replace("/", "-")
-        recipient_folder = os.path.join(output_folder, safe_recipient)
-        os.makedirs(recipient_folder, exist_ok=True)
+        # Sanitize sender name for folder use
+        safe_sender = sender.replace(" ", "_").replace("/", "-")
+        sender_folder = os.path.join(output_folder, safe_sender)
+        os.makedirs(sender_folder, exist_ok=True)
 
         # Create new filename
         new_filename = f"{email_date}_{sender}_to_{recipient}.pdf"
-        new_filepath = os.path.join(recipient_folder, new_filename)
+        new_filepath = os.path.join(sender_folder, new_filename)
 
-        # Save to recipient folder
+        # Save to sender folder
         doc.save(new_filepath)
 
         if matches:
             for kw in matches:
-                keyword_folder = os.path.join(recipient_folder, kw.lower().replace(" ", "_"))
+                keyword_folder = os.path.join(sender_folder, kw.lower().replace(" ", "_"))
                 os.makedirs(keyword_folder, exist_ok=True)
                 matched_filepath = os.path.join(keyword_folder, new_filename)
                 doc.save(matched_filepath)
