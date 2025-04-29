@@ -1,3 +1,4 @@
+
 import os
 import fitz  # PyMuPDF
 import re
@@ -5,20 +6,20 @@ from datetime import datetime
 from difflib import SequenceMatcher
 
 # === Folders ===
-pdf_folder = input("enter source folder: \nExample:\n\/Users/justinlandess/Desktop/gmail_pdf\nenter source folder: ")
-output_folder = input("Example: /Users/justinlandess/Desktop/organized_emails\nEnter output folder: ")
+pdf_folder = input("enter source folder: \nExample:\n\/Users/justinlandess/Desktop/gmail_pdf\nEnter source folder: ")
+output_folder = input("\nExample:\n/Users/justinlandess/Desktop/organized_emails\nEnter output folder: ")
 
 # === Create output folder if it doesn't exist ===
 os.makedirs(output_folder, exist_ok=True)
 
 # === Keyword list ===
-keywords = keywords = [
+keywords = [
     "Jonathan","$","bonus","share","share's",
     "contribution", "stock", "payment",
     "differred", "obligation", "vlad",
     "promise","action","secret","confidential",
-    "performance","termination","vest","purchase",
-    "wrongful"
+    "performance","termination","vest",
+    "wrongful","purchase"
     ]
 
 # === Regex patterns ===

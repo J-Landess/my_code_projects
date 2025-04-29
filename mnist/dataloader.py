@@ -152,8 +152,8 @@ def get_data_loaders(batch_size=8, imbalance_factor=1.0):
     print("Loading data...")
     
     # Load MNIST dataset
-    train_data = datasets.MNIST(root=data_dir, train=True, download=False, transform=transform)
-    test_data = datasets.MNIST(root=data_dir, train=False, download=False, transform=transform)
+    train_data = datasets.MNIST(root=data_dir, train=True, download=True, transform=transform)
+    test_data = datasets.MNIST(root=data_dir, train=False, download=True, transform=transform)
     
     print("Data loaded.")
     

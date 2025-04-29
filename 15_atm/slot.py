@@ -1,3 +1,4 @@
+from atm import user_interface
 from collections import Counter
 import random
 import sys
@@ -67,9 +68,13 @@ def payout(game_output, credit, bet):
 def slot_game():
     credit = insert_bill()
     while credit is not None:
-        credit, bet = place_bet(credit)
-        game_output = print_game()
-        credit = payout(game_output, credit, bet)
+        play_again = input("Play Again?[y/n]: ")
+        if play_again.lower() == "no":
+            user_interface()
+        else:
+            credit, bet = place_bet(credit)
+            game_output = print_game()
+            credit = payout(game_output, credit, bet)
 
   
 
