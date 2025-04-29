@@ -1,5 +1,5 @@
 import random
-
+"""A Dice game that simulates a six sided die."""
 
 
 class Dice:
