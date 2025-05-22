@@ -7,7 +7,7 @@ valid_answers = ["A","B","C","D",]
 def get_answer_1(scores=0):
     while True:
         try:
-            answer_1 = input("What is the Capitol of France?\nA. Berlin\nB. Madrid\nC. Paris\nD. Rome\n Your answer: ").upper()
+            answer_1 = input("\nWhat is the Capitol of France?\nA. Berlin\nB. Madrid\nC. Paris\nD. Rome\n Your answer: ").upper()
             correct_answers = {"answer_1":"C","answer_2":"B","answer_3":"D"}
             if answer_1 not in valid_answers:
                 raise ValueError()
