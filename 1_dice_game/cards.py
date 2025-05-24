@@ -1,4 +1,6 @@
 import random
+suits = "hearts", "diamonds","spades","clubs"
+rank = "12345678910JQKA".split()
 deck = [
     "A-SPADE","2-SPADE","3-SPADE","4-SPADE","5-SPADE","6-SPADE","7-SPADE","8-SPADE","9-SPADE","10-SPADE","J-SPADE","Q-SPADE","K-SPADE",
     "A-HEART","2-HEART","3-HEART","4-HEART","5-HEART","6-HEART","7-HEART","8-HEART","9-HEART","10-HEART","J-HEART","Q-HEART","K-HEART",
@@ -11,19 +13,25 @@ def deal_cards():
     return hand_dealt
 
 def hold_cards(hand_dealt):
-    for i in enumerate(hand_dealt,start=1):
-        print(i)   
-    cards_held = input("What numbers would you like to hold?: ").split()
-    return cards_held
+    for i, card in enumerate(hand_dealt,start=1):
+        print(f"{i}:{card}") 
+    while True:
+        try:
+            cards_held = [int(i) for i in input("What numbers would you like to hold?: ").split()]
+            return cards_held
+        except ValueError:
+            print("Must be a list of index values seperated by a space\nExample:\nHold Cards\n1 4 5")
+
 
 def new_cards(hand_dealt,cards_held):
-    if 1 not in cards_held:
-        hand_dealt[0] = deck.pop()
-        print(f"new hand: {hand_dealt}")
+    for i in range(5):
+        if (i+1) not in cards_held:
+            hand_dealt[i] = deck.pop()
+    print(f"final hand: {hand_dealt}")
 
 
 def run():
-    hand1 = deal_cards()
-    hold1 = hold_cards(hand_dealt=hand1)
-    new_cards(hand_dealt=hand1,cards_held=hold_cards)
+    hand_dealt = deal_cards()
+    cards_held = hold_cards(hand_dealt)
+    new_cards(hand_dealt,cards_held)
 run()
