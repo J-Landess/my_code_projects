@@ -1,43 +1,48 @@
-🐍 My Python Journey
-This repo is my six-month crash course in Python, from tiny exercises to building full apps and my first machine learning project. It’s a bit rough in spots — that’s the point! Every module tells a story about something I learned along the way.
-🚀 The Journey: From Basics to Big Projects
-Month 1–2: Baby Steps 👶
-🎲 Dice Games & Mini Quests – learning loops, conditionals, and basic functions
-✏️ Word Guessing & Quiz Games – getting comfy with strings and user input
-🔢 Simple exercises to understand Python fundamentals
-Month 3–4: Leveling Up 🆙
-❌ Tic-Tac-Toe & Slot Machine – interactive CLI games to practice logic
-📋 To-Do List & Currency Converter – building small utilities from scratch
-📝 File Handling & JSON – starting to persist data safely
-Month 5–6: Big Brain Stuff 🧠
-💰 15_ATM: ATM/Gaming App – my proudest project so far:
-Generates passwords and safely checks credentials
-Stores user info and account data securely in JSON files
-Multiple live games integrated with RGB graphics
-Full backend logic for account management, transactions, and gaming
-📨 Email Organizer – hooks into Gmail to automatically classify messages
-➗ Linear Algebra Playground – matrix operations, vectorizations, SVD, MAE
-🧠 MNIST Neural Network – handwritten digit recognition; first real machine learning experiment
-🛠️ How to Run
-Clone the repo:
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-cd YOUR-REPO-NAME
-Make sure you have Python 3 installed.
-Run scripts directly:
-python dice_game.py
-python tic_tac_toe.py
-python email_organizer.py
-python 15_atm.py
-python mnist_model.py
-⚠️ Notes
-This repo is rough around the edges — it’s a snapshot of my learning curve, not production-ready code.
-Each module shows a skill I learned at that moment: from simple loops to building apps, handling data securely, and experimenting with machine learning.
-15_ATM is the big flex — a project that combines security, JSON storage, live gaming logic, and RGB graphics in one backend app.
-�� Lessons Learned
-Python fundamentals: loops, functions, classes, error handling
-Interactive CLI apps: games, simulators, and utilities
-File I/O & JSON persistence for safe data storage
-Gmail API integration for automating tasks
-Linear algebra & numerical operations in code
-Machine learning basics with neural networks (MNIST)
-Building a complex, multi-feature app from scratch (15_ATM)
+# my_code_projects
+
+Collection of small Python console apps for practice (games, utilities, and a PDF organizer). Sibling project [`15_atm`](../15_atm) composes several of these ideas into one menu-driven ATM demo.
+
+## Requirements
+
+Python 3. Optional extras used by some projects:
+
+```bash
+pip install termcolor qrcode pillow pymupdf
+```
+
+| Package     | Used by                                      |
+|-------------|----------------------------------------------|
+| `termcolor` | quiz, tic-tac-toe, cows & bulls, etc.        |
+| `qrcode`    | `3_qr_code_generator`                        |
+| `pymupdf`   | `email_organizer` (import as `fitz`)         |
+
+## Projects
+
+| Folder | Entry point(s) | Notes |
+|--------|----------------|--------|
+| `1_dice_game` | `dice_game.py`, `cards.py` | Dice / cards helpers |
+| `2_number_guessing_game` | `numbers_game.py` | Number guessing |
+| `3_qr_code_generator` | `qr_code.py`, `qr_code_genv1.py` | Needs `qrcode` |
+| `4_currency_converter` | scripts in folder | Hardcoded rates, no API |
+| `5_rock,paper,scissors` | `rock_paper_scissors.py` | Classic RPS |
+| `6_quiz_game` | `quiz_game.py` … `quiz_game_v3.py` | Needs `termcolor` |
+| `7_tic_tac_toe` | `TicTacToe.py`, `TicTacToe_v2.py` | Needs `termcolor` |
+| `8_todo_list` | `todo_list.py` | Simple todo CLI |
+| `9_pig_dice_game` | `pig_dice_game.py`, `pig_dice_game_v2.py` | Pig dice |
+| `10_cows_and_bulls` | `cows_and_bulls.py`, `cows_and_bulls_v2.py` | Needs `termcolor` |
+| `11_password_strength_checker` | `password_strength_checker.py`, `_v2.py` | Password scoring |
+| `12_password_generator` | `password_generator.py` … `_v3.py` | Password generation |
+| `13_word_guessing_game` | `word_guessing.py` | Word guess |
+| `14_slot_machine` | `slot.py` | Slot machine |
+| `email_organizer` | `email_organizer.py`, `fuzzy_matching.py` | PDF tooling via PyMuPDF |
+
+Some folders include problem-statement `.mp4` videos.
+
+## How to run
+
+```bash
+cd 2_number_guessing_game
+python numbers_game.py
+```
+
+Prefer the highest versioned script in a folder when multiple exist (for example `*_v3.py`).
